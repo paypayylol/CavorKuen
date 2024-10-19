@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" href="history.css"> <!-- Ensure the path to CSS is correct -->
+</head>
+<body> 
+    <header class="header">
+        <img src="Logo.png" class="logo" alt="Cavor Kuen Logo">
+        <h1 class="page-title">~History~</h1>
+        <div class="menu-icon" onclick="toggleMenu()">
+            &#9776;
+        </div>
+    </header>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Culture.html">Culture and Heritage</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="language.html">Language</a></li>
+            <li><a href="more.html">More</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.style.display === "block") {
+                navbar.style.display = "none";
+            } else {
+                navbar.style.display = "block";
+            }
+        }
+    </script>
+    <div class="news-ticker">
+        <marquee behavior="scroll" direction="left" scrollamount="3" loop="infinite">
+            Welcome to the Pamir News/Events/Culture Portal! | Navruz Festival coming soon in March! | Don't miss the annual Osh Festival this summer! | The annual New Year Celebration will be Held in New York main jamaatkhana - to sign up contact +992 00 655 2788 - minimum contribution for the event is encouraged - 5USD | On Friday, all the Jamatkhanas in USA states, including Texas, will celebrate the upcoming birthdays of fall-borns. Refreshments and cake will be provided to everyone in the social hall of the Khane. Don't miss your chance to try amazing food and meet new friends!
+        </marquee>
+    </div>
+    <h1>The History of Pamir</h1>
+    <p>The Pamir region has a long and rich history, dating back more than 2,500 years. The strategic location of the Pamir Mountains made it a key region along the ancient Silk Road, connecting the East and the West.</p>
+
+    <h2>Early Settlements</h2>
+    <p>The earliest inhabitants of the Pamir region were pastoralists and agricultural communities who cultivated the land and traded goods with travelers passing through the Silk Road.</p>
+
+    <h2>The Silk Road Connection</h2>
+    <p>The Pamirs were an essential corridor for trade between China, Persia, and Europe during the time of the Silk Road. The region played a significant role in cultural exchanges and the spread of religions like Buddhism and Islam.</p>
+
+    <h2>Modern Day Pamir</h2>
+    <p>Today, Pamir remains a remote but vibrant region, rich in tradition and culture. The people of Pamir have maintained their distinct identity, blending ancient practices with modern life.</p>
+
+
+    <div class="gallery">
+        <img src="h1.jpeg" alt="Pamiri Tradition 3"><p>Ancient Zoroastrizm building</p>
+        <img src="h2.jpeg" alt="Pamiri Tradition 4"><p>Ancient chaliphate ruling</p>
+        <img src="h3.png" alt="Pamiri Tradition 5"><p>Today's Badakhshan</p>
+        <img src="h4.jpg" alt="Pamiri Tradition 6"><p>Ancient Pamiri Home- Current</p>
+    </div>
+
+
+    <h2>Zoroastrianism Summary</h2>
+<p>
+    Zoroastrianism is an ancient pre-Islamic religion of Iran, founded by the prophet Zarathushtra (Zoroaster). It is both monotheistic and dualistic, worshiping Ahura Mazda, the supreme god, while also recognizing the struggle between good and evil. Human beings are viewed as having free will to choose between these forces, and the ultimate victory of good is assured. Ritual purity and avoiding defilement are central practices, and the religion is optimistic about the triumph of good.
+</p>
+
+<span id="dots">...</span>
+<span id="more">
+    <p>
+        Historically, Zoroastrianism influenced other major religions, including Judaism, Christianity, and Islam. It originated in eastern Iran, likely before 600 BCE. During the Achaemenid Empire, rulers like Darius I promoted Ahura Mazda's worship. However, the religion was marginalized during Alexander the Great's conquest and revived under the Sasanian dynasty. With the advent of Islam, Zoroastrianism declined in Iran, but it survived among the Parsis in India.
+    </p>
+    <p>
+        Zoroastrian theology features dualism, with the Bounteous Spirit (Spenta Mainyu) representing good and Angra Mainyu (Ahriman) representing evil. Cosmogonically, the universe was created as a battleground for this struggle, with Ahura Mazda ultimately triumphing after a 9,000-year cycle. Human beings play a role in this cosmic battle through ethical choices and must maintain life, procreate, and combat evil forces.
+    </p>
+    <p>
+        Zoroastrians hold five daily prayers and venerate fire as a symbol of purity. The dead are exposed in "Towers of Silence" (dakhmas) for excarnation, avoiding contamination of earth or fire. Major festivals like Nōrūz celebrate renewal and the fight against evil.
+    </p>
+    <p>
+        Ethically, Zoroastrianism stresses truth, purity, and maintaining life, especially through agriculture and cattle rearing. The final judgment after death evaluates one’s actions, thoughts, and words, with consequences in either paradise or hell.
+    </p>
+</span>
+
+<br>
+<span class="show-more-btn" onclick="toggleMore()">Show More</span>
+
+<script>
+    function toggleMore() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.querySelector(".show-more-btn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Show More";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Show Less";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News and events</title>
+    <link rel="stylesheet" href="events.css"> 
+</head>
+<body>
+   
+    <header class="header">
+        <img src="Logo.png"  class="logo">
+        <h1 class="page-title">~News and Events~</h1>
+        <div class="menu-icon" onclick="toggleMenu()">
+            &#9776; 
+        </div>
+    </header>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Culture .html">Culture and Heritage</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="language.html">Language</a></li>
+            <li><a href="more.html">More</a></li>
+        </ul>
+
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.style.display === "block") {
+                navbar.style.display = "none";
+            } else {
+                navbar.style.display = "block";
+            }
+        }
+    </script>
+    <div class="news-ticker">
+        <marquee behavior="scroll" direction="left" scrollamount="3" loop="infinite">
+            Welcome to the Pamir News/Events/Culture Portal! | Navruz Festival coming soon in March! | Don't miss the annual Osh Festival this summer! | The annual New Year Celebration will be Held in New York main jamaatkhana - to sign up contact +992 00 655 2788 - minimum contribution for the event is encouraged - 5USD | On Friday, all the Jamatkhanas in USA states, including Texas, will celebrate the upcoming birthdays of fall-borns. Refreshments and cake will be provided to everyone in the social hall of the Khane. Don't miss your chance to try amazing food and meet new friends!
+        </marquee>
+    </div>
+    <h1>Events in Pamir</h1>
+    <p>Pamiri people celebrate various events throughout the year, including religious and cultural festivals.</p>
+
+    <h2>Navruz (New Year)</h2>
+    <p>Navruz is one of the most celebrated events in the Pamir region. It marks the beginning of the new year and the start of spring. People come together to share meals, dance, and sing traditional songs.</p>
+
+    <h2>Osh Festival</h2>
+    <p>The Osh Festival celebrates the Pamiri dish called **Osh**, a savory rice and meat dish shared during large gatherings. It's a time for the community to come together and celebrate unity.</p>
+
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <h2>Privacy and Use Agreement</h2>
+            <p>By using this platform, you agree to be honest and respectful. Do not post false information. Ensure that your events are genuine and beneficial for the community.</p>
+            <button id="agreeBtn">I Agree</button>
+        </div>
+    </div>
+    
+    <!-- Event Calendar Section -->
+    <div class="calendar-container" id="calendarContainer" style="display:none;">
+        <div class="calendar-header">
+            <button id="prevMonth">Prev</button>
+            <h2 id="monthYear"></h2>
+            <button id="nextMonth">Next</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+    
+    <!-- Event Form Section -->
+    <div class="event-form" id="eventFormContainer" style="display:none;">
+        <h3>Add Event</h3>
+        <input type="date" id="eventDate" required>
+        <input type="text" id="eventTitle" placeholder="Event Title" required>
+        <button id="addEventBtn">Add Event</button>
+    </div>
+    
+    <script>
+        const events = JSON.parse(localStorage.getItem('events')) || {}; // Events stored in localStorage
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+    
+        // Function to display calendar
+        function displayCalendar(month, year) {
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = ''; // Clear previous calendar
+            const firstDay = new Date(year, month).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            document.getElementById('monthYear').innerText = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+    
+            // Fill empty days
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('calendar-cell');
+                calendarGrid.appendChild(emptyCell);
+            }
+    
+            // Fill in the days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.classList.add('calendar-cell');
+                cell.innerText = day;
+    
+                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                if (events[dateKey]) {
+                    events[dateKey].forEach(event => {
+                        const eventDiv = document.createElement('div');
+                        eventDiv.classList.add('event');
+                        eventDiv.innerText = event;
+                        cell.appendChild(eventDiv);
+                    });
+                }
+    
+                calendarGrid.appendChild(cell);
+            }
+        }
+    
+        // Handle Previous and Next Buttons
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            displayCalendar(currentMonth, currentYear);
+        });
+    
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            displayCalendar(currentMonth, currentYear);
+        });
+    
+        // Handle Event Submission
+        document.getElementById('addEventBtn').addEventListener('click', () => {
+            const eventDate = document.getElementById('eventDate').value;
+            const eventTitle = document.getElementById('eventTitle').value;
+    
+            if (eventDate && eventTitle) {
+                if (!events[eventDate]) {
+                    events[eventDate] = [];
+                }
+                events[eventDate].push(eventTitle);
+                localStorage.setItem('events', JSON.stringify(events));
+                displayCalendar(currentMonth, currentYear); // Update calendar
+                alert("Event added!");
+            } else {
+                alert("Please fill in both the date and title.");
+            }
+        });
+    
+        // Terms and Privacy Modal
+        document.getElementById('agreeBtn').addEventListener('click', () => {
+            document.getElementById('termsModal').style.display = 'none'; // Hide terms modal
+            document.getElementById('calendarContainer').style.display = 'block'; // Show calendar
+            document.getElementById('eventFormContainer').style.display = 'block'; // Show event form
+            displayCalendar(currentMonth, currentYear); // Load initial calendar
+        });
+    
+        // Initial modal display
+        document.getElementById('termsModal').style.display = 'block';
+    </script>
+</body>
+</html>
